@@ -1,14 +1,18 @@
 import numpy as np
+from science_optimization.algorithms.linear_programming import Glop
+from science_optimization.builder import OptimizationProblem
+from science_optimization.problems import MIP
+from science_optimization.solvers import Optimizer
 
-lambda_a = 1
-lambda_c = 10 * lambda_a
-lambda_d1 = 1
-lambda_d2 = 1
+lambda_a = 0.1
+lambda_c = 1000 * lambda_a
+lambda_d1 = 1.0459
+lambda_d2 = 1.8388
 
-variables = 9
-equations = 10
+n_variables = 9
+n_equations = 10
 
-A = np.zeros((variables, equations))
+A = np.zeros((n_equations, n_variables))
 
 A[0, 0] = -lambda_a
 A[0, 4] = lambda_d2
@@ -41,6 +45,22 @@ A[7, 7] = -lambda_d1
 
 A[8, 6] = lambda_a
 A[8, 7] = lambda_d1
-A[8, 8] = lambda_d2
+A[8, 8] = -lambda_d2
 
 A[9, :] = 1
+
+b = np.zeros((n_equations, 1))
+b[9, 0] = 1
+
+c = np.zeros((n_variables, 1))
+
+mipp = OptimizationProblem(builder=MIP(c=c, A=np.zeros((1, n_variables)), b=np.array([[0]]), Aeq=A, beq=b))
+
+# builder optimization
+mip_optimizer = Optimizer(opt_problem=mipp, algorithm=Glop())
+
+results = mip_optimizer.optimize(debug=False)
+
+results.info()
+
+print("aquii", sum(results.x))
