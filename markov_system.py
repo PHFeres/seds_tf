@@ -63,4 +63,25 @@ results = mip_optimizer.optimize(debug=False)
 
 results.info()
 
-print("aquii", sum(results.x))
+all_z = results.x
+
+z_1 = all_z[0, 0]
+z_2 = all_z[1, 0]
+z_3 = all_z[2, 0]
+z_4 = all_z[3, 0]
+z_5 = all_z[4, 0]
+z_6 = all_z[5, 0]
+z_7 = all_z[6, 0]
+z_8 = all_z[7, 0]
+z_9 = all_z[8, 0]
+
+theta = lambda_a * (z_1 + z_2 + z_4 + z_5 + z_6 + z_7)
+L_q = (0 * (z_1 + z_4 + z_5) + 1 * (z_2 + z_6 + z_7) + 2 * (z_3 + z_8 + z_9))
+
+W_q = L_q / theta
+
+print("theta: ", theta)
+print("L_q: ", L_q)
+print("Tempo médio de espera na fila: ", W_q)
+
+print()
