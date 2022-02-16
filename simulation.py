@@ -55,31 +55,31 @@ def make_simulation(lambda_a = 2):
     return W_q_each
 
 
-# if __name__ == '__main__':
-#     """
-#     Main method to make 10 executions of simulation for one lambda_a
-#     """
-#     W_q_list = list()
-#     for _ in range(1):
-#
-#         W_q_list.append(make_simulation())
-#
-#     plt.boxplot(W_q_list)
-#     plt.show()
-#     print("Média: ", np.mean(W_q_list))
-
 if __name__ == '__main__':
     """
-    Main method to compare each lambda for one execution
+    Main method to make 10 executions of simulation for one lambda_a
     """
     W_q_list = list()
-    lambda_a_list = [0.1, 0.4, 0.6, 1, 2]
-    for la in lambda_a_list:
+    for _ in range(10):
 
-        W_q_list.append(make_simulation(lambda_a=la))
+        W_q_list.append(make_simulation())
 
     plt.boxplot(W_q_list)
-    plt.xticks(range(1, len(lambda_a_list)+1), lambda_a_list)
-    plt.xlabel("$\lambda_a$")
-    plt.ylabel("$w_q$")
     plt.show()
+    print("Média: ", np.mean(W_q_list))
+
+# if __name__ == '__main__':
+#     """
+#     Main method to compare each lambda for one execution
+#     """
+#     W_q_list = list()
+#     lambda_a_list = [0.1, 0.4, 0.6, 1, 2]
+#     for la in lambda_a_list:
+#
+#         W_q_list.append(make_simulation(lambda_a=la))
+#
+#     plt.boxplot(W_q_list)
+#     plt.xticks(range(1, len(lambda_a_list)+1), lambda_a_list)
+#     plt.xlabel("$\lambda_a$")
+#     plt.ylabel("$w_q$")
+#     plt.show()
