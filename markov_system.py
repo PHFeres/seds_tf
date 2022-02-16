@@ -4,7 +4,7 @@ from science_optimization.builder import OptimizationProblem
 from science_optimization.problems import MIP
 from science_optimization.solvers import Optimizer
 
-lambda_a = 1
+lambda_a = 2
 lambda_c = 1000 * lambda_a
 lambda_d1 = 1.0459
 lambda_d2 = 1.8388

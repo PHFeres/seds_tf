@@ -11,7 +11,7 @@ sim_size = 10000
 n = 2
 
 
-def make_simulation(lambda_a = 2):
+def make_simulation(lambda_a=2.0):
 
     lambda_c = 1000 * lambda_a
     lambda_d1 = 1.0459
@@ -52,7 +52,7 @@ def make_simulation(lambda_a = 2):
 
     plt.show()
 
-    return W_q_each
+    return W_q
 
 
 if __name__ == '__main__':
@@ -62,11 +62,12 @@ if __name__ == '__main__':
     W_q_list = list()
     for _ in range(10):
 
-        W_q_list.append(make_simulation())
+        W_q_list.append(make_simulation(lambda_a=2))
 
     plt.boxplot(W_q_list)
     plt.show()
     print("Média: ", np.mean(W_q_list))
+    print("Variancia: ", np.var(W_q_list))
 
 # if __name__ == '__main__':
 #     """
